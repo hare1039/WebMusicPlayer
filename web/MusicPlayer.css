@@ -42,6 +42,9 @@ body{
 .dir_back:hover{
 	background-color: rgb(231, 231, 231);
 }
+.playing{
+	background-color: rgb(255, 177, 74);
+}
 #container{
 	height: 95vh;
 	width: 100%;

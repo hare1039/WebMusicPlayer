@@ -9,9 +9,10 @@ function onMessage(event) {
     if(input.Action === "list"){
         $("#container").empty();
         //console.log("Got list");
-        if(cur_path){
+        if(cur_path!=="/"){
             var file = $("<div>").text("back");
             file.addClass("item dir_back");
+            setCtrl(file);
             $("#container").append(file);
         }
     }
@@ -23,10 +24,11 @@ function onMessage(event) {
         }
         else{
             file.addClass("item dir")
+            file.attr("id",input.Name)
         }
+        setCtrl(file);
         $("#container").append(file);
     }
-
 }
 
 function updateList() {
@@ -36,6 +38,7 @@ function updateList() {
     };
     socket.send(JSON.stringify(listAction));
     console.log("updateList");
+    console.log(listAction);
 }
 /*window.setTimeout(
     updateList()
