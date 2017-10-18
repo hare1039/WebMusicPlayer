@@ -17,8 +17,8 @@ func main(){
 	router.GET("/ws/MusicPlayer", func(c *gin.Context){
 		wshandler(c.Writer, c.Request)})
 	router.Static("/MusicPlayer/", "./web")
-	router.Run(":8023")
-	log.Println("Serveing on 8023")
+	router.Run(":8025")
+	log.Println("Serveing on 8025")
 }
 var upgrader =websocket.Upgrader{}
 func wshandler(w http.ResponseWriter, r *http.Request){
