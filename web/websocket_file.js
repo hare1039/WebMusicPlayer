@@ -8,6 +8,7 @@ function onMessage(event) {
     //console.log(input);
     if(input.Action === "list"){
         $("#container").empty();
+        on_msg = false;
         //console.log("Got list");
         if(cur_path!=="/"){
             var file = $("<div>").text("back");
@@ -32,6 +33,7 @@ function onMessage(event) {
 }
 
 function updateList() {
+    on_msg = true;
     var listAction = {
         Action: "list",
         Path: cur_path

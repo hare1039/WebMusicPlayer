@@ -7,31 +7,35 @@ var song = new Audio();
 
 var cur_path = "/";
 var root_path = "mnt/"
+var on_msg = false
 
 $("#container").height($(window).height()-$("#footer").height());
 function setCtrl(element){
 	element.on("click",function(e){
-		console.log("click");
-		if($(this).hasClass("dir")){
-			cur_path+=element.text()+"/";
-			updateList();
-			console.log("clk_dir");
-			console.log(cur_path);
-		}
-		else if ($(this).hasClass("dir_back")) {
-			cur_path = cur_path.slice(0,-1);
+		if(!on_msg){
+			console.log("click");
+			if($(this).hasClass("dir")){
+				cur_path+=element.text()+"/";
+				updateList();
+				console.log("clk_dir");
+				console.log(cur_path);
+			}
+			else if ($(this).hasClass("dir_back")) {
+				cur_path = cur_path.slice(0,-1);
 
-			console.log(cur_path);
-			cur_path = cur_path.slice(0,cur_path.lastIndexOf("/")+1);
-			console.log(cur_path);
-			updateList();
-			console.log("clk_dir_back");
-			console.log(cur_path);
+				console.log(cur_path);
+				cur_path = cur_path.slice(0,cur_path.lastIndexOf("/")+1);
+				console.log(cur_path);
+				updateList();
+				console.log("clk_dir_back");
+				console.log(cur_path);
+			}
+			else{
+				console.log("clk_file");
+				changeSong($(this));
+			}
 		}
-		else{
-			console.log("clk_file");
-			changeSong($(this));
-		}
+
 	})
 }
 function changeSong(element){
@@ -90,9 +94,12 @@ $("#btn_forword").on("click",function(e){
 		}
 		if($(".playing").next(".file").length){
 			changeSong($(".playing").next(".file"));
+			song.currentTime = 0;
+			song.play();
 		}
-		song.currentTime = 0;
-		song.play();
+		else{
+			song.currentTime = 0;
+		}
 	}
 });
 $("#btn_backword").on("click",function(e){
