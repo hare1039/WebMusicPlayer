@@ -7,6 +7,8 @@ var song = new Audio();
 
 var cur_path = "/";
 var root_path = "mnt/"
+
+$("#container").height($(window).height()-$("#footer").height());
 function setCtrl(element){
 	element.on("click",function(e){
 		console.log("click");
@@ -27,14 +29,83 @@ function setCtrl(element){
 			console.log(cur_path);
 		}
 		else{
-			$(".playing").addClass("file");
-			$(".file").removeClass("playing");
-			$(this).removeClass("file")
-			$(this).addClass("playing");
 			console.log("clk_file");
-			console.log(cur_path+$(this).text());
-			song.src = root_path+cur_path+$(this).text();
-			song.play();
+			changeSong($(this));
 		}
 	})
 }
+function changeSong(element){
+	$(".playing").addClass("file");
+	$(".file").removeClass("playing");
+	element.removeClass("file")
+	element.addClass("playing");
+	console.log(cur_path+element.text());
+	song.src = root_path+cur_path+element.text();
+	song.play();
+	if($("#btn_play").hasClass("btn_play")){
+		$("#btn_play").removeClass("btn_play")
+		$("#btn_play").addClass("btn_pause")
+	}
+}
+$("#btn_play").on("click",function(e){
+	console.log("btn_play");
+	if($(this).hasClass("btn_play")){
+		if(song.readyState==0){
+			changeSong($(".file:first"));
+		}
+		else {
+			song.play();
+			$(this).removeClass("btn_play")
+			$(this).addClass("btn_pause")
+		}
+	}
+	else {
+		song.pause();
+		$(this).removeClass("btn_pause")
+		$(this).addClass("btn_play")
+	}
+});
+$("#seek").attr("min",0);
+$("#seek").on("change input",function(){
+	song.currentTime = $(this).val();
+})
+song.addEventListener("loadedmetadata",function(){
+	$("#seek").attr("max",song.duration);
+})
+song.addEventListener("timeupdate",function(){
+	var curtime = parseInt(song.currentTime, 10);
+	$("#seek").val(curtime);
+})
+song.addEventListener("ended",function(){
+	$("#btn_play").removeClass("btn_pause")
+	$("#btn_play").addClass("btn_play")
+	$("#btn_forword").click()
+})
+$("#btn_forword").on("click",function(e){
+	console.log("btn_forword");
+	if($(".playing").length){
+		if($("#btn_play").hasClass("btn_play")){
+			$(this).removeClass("btn_play")
+			$(this).addClass("btn_pause")
+		}
+		if($(".playing").next(".file").length){
+			changeSong($(".playing").next(".file"));
+		}
+		song.currentTime = 0;
+		song.play();
+	}
+});
+$("#btn_backword").on("click",function(e){
+	console.log("btn_backword");
+	if($(".playing").length){
+		if($("#btn_play").hasClass("btn_play")){
+			$(this).removeClass("btn_play")
+			$(this).addClass("btn_pause")
+		}
+		if($(".playing").prev(".file").length && song.currentTime<3){
+			changeSong($(".playing").prev(".file"));
+		}
+		song.currentTime = 0;
+		song.play();
+	}
+});

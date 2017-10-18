@@ -9,6 +9,7 @@ import(
 	"github.com/gorilla/websocket"
 	// "encoding/json"
 	"strconv"
+	"os"
 )
 var root = "./web/mnt"
 func main(){
@@ -43,12 +44,25 @@ func wshandler(w http.ResponseWriter, r *http.Request){
 			}
 			log.Println(msg_out);
 			conn.WriteJSON(msg_out)
+			//start read file
 			files, err := ioutil.ReadDir(root+msg["Path"].(string))
 			log.Println(root+msg["Path"].(string));
 			if err != nil{
 				log.Fatal(err)
 			}
+			s_dir := make([]os.FileInfo,0)
+			s_file := make([]os.FileInfo,0)
 			for _,f:=range files{
+				if(f.Name()[0] != []byte(".")[0]){
+					if(f.IsDir()){
+						s_dir=append(s_dir,f)
+					} else {
+						s_file = append(s_file,f)
+					}
+				}
+			}
+			s_dir = append(s_dir,s_file...)
+			for _,f:=range s_dir{
 				msg_out := Item{
 					"item",
 					f.Name(),
