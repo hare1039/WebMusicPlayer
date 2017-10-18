@@ -1,4 +1,4 @@
-var socket = new WebSocket("ws://pinkiebala.nctu.me:8024/ws/MusicPlayer");
+var socket = new WebSocket("wss://pinkiebala.nctu.me/ws/MusicPlayer");
 socket.onmessage = onMessage;
 
 

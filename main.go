@@ -20,7 +20,11 @@ func main(){
 	router.Run(":8024")
 	log.Println("Serveing on 8024")
 }
-var upgrader =websocket.Upgrader{}
+var upgrader =websocket.Upgrader{
+	CheckOrigin :func(r *http.Request)bool{
+		return true
+	},
+}
 func wshandler(w http.ResponseWriter, r *http.Request){
 	conn, err := upgrader.Upgrade(w, r, nil)
 	//defer conn.Close()
