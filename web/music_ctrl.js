@@ -1,13 +1,10 @@
-// $("#btn_play")
-// $("#btn_forword")
-// $("#btn_backword")
+song = new Audio();
 
-
-var song = new Audio();
-
-var cur_path = "/";
-var root_path = "mnt/"
-var on_msg = false
+let cur_path = ["/"];
+let root_path = "./mnt"
+let on_msg = false
+let cur_list = [];
+let playing_id = 0;
 
 $("#container").height($(window).height()-$("#footer").height());
 function setCtrl(element){
@@ -15,20 +12,16 @@ function setCtrl(element){
 		if(!on_msg){
 			console.log("click");
 			if($(this).hasClass("dir")){
-				cur_path+=element.text()+"/";
+				cur_path.push(element.text()+"/");
 				updateList();
 				console.log("clk_dir");
-				console.log(cur_path);
+				console.log(cur_path.join(""));
 			}
 			else if ($(this).hasClass("dir_back")) {
-				cur_path = cur_path.slice(0,-1);
-
-				console.log(cur_path);
-				cur_path = cur_path.slice(0,cur_path.lastIndexOf("/")+1);
-				console.log(cur_path);
+				cur_path.pop();
 				updateList();
 				console.log("clk_dir_back");
-				console.log(cur_path);
+				console.log(cur_path.join(""));
 			}
 			else{
 				console.log("clk_file");
@@ -43,8 +36,8 @@ function changeSong(element){
 	$(".file").removeClass("playing");
 	element.removeClass("file")
 	element.addClass("playing");
-	console.log(cur_path+element.text());
-	song.src = root_path+cur_path+element.text();
+	console.log(cur_path.join("")+element.text());
+	song.src = root_path+cur_path.join("")+element.text();
 	song.play();
 	if($("#btn_play").hasClass("btn_play")){
 		$("#btn_play").removeClass("btn_play")
@@ -77,7 +70,7 @@ song.addEventListener("loadedmetadata",function(){
 	$("#seek").attr("max",song.duration);
 })
 song.addEventListener("timeupdate",function(){
-	var curtime = parseInt(song.currentTime, 10);
+	let curtime = parseInt(song.currentTime, 10);
 	$("#seek").val(curtime);
 })
 song.addEventListener("ended",function(){

@@ -1,25 +1,24 @@
-var socket = new WebSocket("wss://pinkiebala.nctu.me/ws/MusicPlayer");
+let socket = new WebSocket("ws://localhost:8024/ws/MusicPlayer");
 socket.onmessage = onMessage;
 
 
 function onMessage(event) {
-    var input = JSON.parse(event.data);
+    let input = JSON.parse(event.data);
     //console.log(event);
     //console.log(input);
     if(input.Action === "list"){
         $("#container").empty();
         on_msg = false;
         //console.log("Got list");
-        if(cur_path!=="/"){
-            var file = $("<div>").text("back");
+        if(cur_path.length!=1){
+            let file = $("<div>").text("back");
             file.addClass("item dir_back");
             setCtrl(file);
             $("#container").append(file);
         }
     }
     else if (input.Action === "item") {
-        var file = $("<div>").text(input.Name);
-        //var file = "<div>"+input.Name+"</div>"
+        let file = $("<div>").text(input.Name);
         if (input.IsDir === "false") {
             file.addClass("item file")
         }
@@ -34,9 +33,9 @@ function onMessage(event) {
 
 function updateList() {
     on_msg = true;
-    var listAction = {
+    let listAction = {
         Action: "list",
-        Path: cur_path
+        Path: cur_path.join("")
     };
     socket.send(JSON.stringify(listAction));
     console.log("updateList");
