@@ -29,6 +29,9 @@ function onMessage(event) {
         setCtrl(file);
         $("#container").append(file);
     }
+    else if (input.Action === "end") {
+        lightPlaying();
+    }
 }
 
 function updateList() {

@@ -10,7 +10,11 @@ import(
 	// "encoding/json"
 	"strconv"
 	"os"
+	"path/filepath"
 )
+var audioExt = map[string]bool{
+	".wav": true,".webm": true,".opus": true,".ogg": true,".mp3": true,".m4a": true,".flac": true,
+}
 var root = "./web/mnt"
 func main(){
 	router := gin.Default()
@@ -58,9 +62,10 @@ func wshandler(w http.ResponseWriter, r *http.Request){
 			s_file := make([]os.FileInfo,0)
 			for _,f:=range files{
 				if(f.Name()[0] != []byte(".")[0]){
+					ext := filepath.Ext(f.Name())
 					if(f.IsDir()){
 						s_dir=append(s_dir,f)
-					} else {
+					} else if audioExt[ext]{
 						s_file = append(s_file,f)
 					}
 				}
@@ -74,6 +79,11 @@ func wshandler(w http.ResponseWriter, r *http.Request){
 				}
 				conn.WriteJSON(msg_out)
 			}
+			msg_out = UpdateList{
+				"end",
+			}
+			log.Println(msg_out);
+			conn.WriteJSON(msg_out)
 		}
 	}
 
