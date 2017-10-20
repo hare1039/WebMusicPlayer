@@ -61,10 +61,8 @@ function changeSong(c_path,song_name){
 	console.log(c_path+song_name);
 	song.src = root_path+c_path+song_name;
 	song.play();
-	if($("#btn_play").hasClass("btn_play")){
-		$("#btn_play").removeClass("btn_play")
-		$("#btn_play").addClass("btn_pause")
-	}//changePlayIcon
+	$("#btn_play").removeClass("btn_play")
+	$("#btn_play").addClass("btn_pause")
 	$("#playing_song").text(song_name);
 }
 $("#btn_play").on("click",function(e){
