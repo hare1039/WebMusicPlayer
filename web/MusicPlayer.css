@@ -140,6 +140,7 @@ body{
 	font-size: 15px;
 	border-radius: 100%;
 	text-align: center;
+	display: none;
 }
 input[type="range"]{
 	-webkit-appearance: none !important;
