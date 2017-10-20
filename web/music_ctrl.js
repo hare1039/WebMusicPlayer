@@ -52,6 +52,7 @@ function lightPlaying(){
 	}).addClass("playing");//if playing song on screen, lignt it
 }
 function changeSong(c_path,song_name){
+	document.getElementById("seek").disabled = false;
 	for(let i=0; i<cur_list.length; i++){
 		if(song_name == cur_list[i])
 			playing_id = i;
@@ -85,7 +86,9 @@ $("#btn_play").on("click",function(e){
 		$(this).addClass("btn_play")
 	}
 });
+document.getElementById("seek").disabled = true;
 $("#seek").attr("min",0);
+$("#seel").val(0);
 $("#seek").on("change input",function(){
 	song.currentTime = $(this).val();
 })
