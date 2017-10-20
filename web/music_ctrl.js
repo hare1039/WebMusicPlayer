@@ -149,7 +149,8 @@ $("#btn_backword").on("click",function(e){
 		if(cur_list[t] !== undefined && song.currentTime<2){
 			changeSong(song_path,cur_list[t]);
 		}
-		song.currentTime = 0;
-		song.play();
+		else {
+			changeSong(song_path,cur_list[playing_id]);
+		}
 	}
 });
