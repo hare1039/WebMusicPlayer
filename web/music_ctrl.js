@@ -126,13 +126,26 @@ $("#btn_forword").on("click",function(e){
 			$(this).removeClass("btn_play")
 			$(this).addClass("btn_pause")
 		}
-		if(cur_list[playing_id+1] !== undefined){
-			changeSong(song_path,cur_list[playing_id+1]);
-			song.currentTime = 0;
-			song.play();
-		}
-		else if(song.paused){
-			song.currentTime = 0;
+		switch (repeat_count) {
+			case 0:
+				if(cur_list[playing_id+1] !== undefined){
+					changeSong(song_path,cur_list[playing_id+1]);
+					song.currentTime = 0;
+					song.play();
+				}
+				else if(song.paused){
+					song.currentTime = 0;
+				}
+				break;
+			case 1:
+				changeSong(song_path,cur_list[(playing_id+1)%cur_list.length]);
+				console.log("next:"+cur_list[(playing_id+1)%cur_list.length]);
+				break;
+			case 2:
+				changeSong(song_path,cur_list[playing_id]);
+				break;
+			default:
+
 		}
 	}
 });
@@ -152,3 +165,22 @@ $("#btn_backword").on("click",function(e){
 		}
 	}
 });
+let repeat_count=0;
+$("#repeat_count").hide();
+$("#btn_repeat").on("click",function(e){
+	repeat_count = (repeat_count+1)%3;
+	switch (repeat_count) {
+		case 0:
+			$("#repeat_count").hide(100);
+			$("#btn_repeat").removeClass("btn_repeat_light");
+			break;
+		case 1:
+			$("#btn_repeat").addClass("btn_repeat_light");
+			break;
+		case 2:
+			$("#repeat_count").show(100);
+			break;
+		default:
+
+	}
+})
