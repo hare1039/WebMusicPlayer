@@ -7,7 +7,7 @@ let on_msg = false
 let cur_list = [];
 let playing_id = 0;
 
-$("#container").height($(window).height()-$("#footer").height());
+$("#container").height($(window).height()-$("#footer").height()-$("#header").height()-30);
 function setCtrl(element){
 	element.on("click",function(e){
 		if(!on_msg){
@@ -18,14 +18,6 @@ function setCtrl(element){
 				console.log("clk_dir");
 				console.log(cur_path.join(""));
 			}
-			else if ($(this).hasClass("dir_back")) {
-				cur_path.pop();
-				updateList();
-				console.log("clk_dir_back");
-				console.log(cur_path.join(""));
-				console.log(cur_list);
-				console.log(playing_id);
-			}
 			else{
 				console.log("clk_file");
 				updateCurList();
@@ -35,6 +27,14 @@ function setCtrl(element){
 
 	})
 }
+$("#btn_back").on("click",function(e){
+	cur_path.pop();
+	updateList();
+	console.log("clk_btn_back");
+	console.log(cur_path.join(""));
+	console.log(cur_list);
+	console.log(playing_id);
+});
 function updateCurList(){
 	song_path = cur_path.join("");
 	cur_list.length =0;//clear the list
@@ -165,6 +165,7 @@ $("#btn_backword").on("click",function(e){
 		}
 	}
 });
+$("#btn_back").hide();
 let repeat_count=0;
 $("#repeat_count").hide();
 $("#btn_repeat").on("click",function(e){

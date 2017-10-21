@@ -12,11 +12,12 @@ function onMessage(event) {
         on_msg = false;
         //console.log("Got list");
         if(cur_path.length!=1){
-            let file = $("<div>").text("back");
-            file.addClass("item dir_back");
-            setCtrl(file);
-            $("#container").append(file);
+            $("#btn_back").show(200);
         }
+        else {
+            $("#btn_back").hide(200);
+        }
+        $("#folder_name").text(cur_path[cur_path.length-1]);
     }
     else if (input.Action === "item") {
         let file = $("<div>").text(input.Name);
