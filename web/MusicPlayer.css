@@ -178,6 +178,7 @@ body{
 }
 .btn_repeat_light{
 	background-color: rgb(120, 255, 194);
+	border: 2px solid rgb(47, 47, 47);
 }
 #repeat_count{
 	position: absolute;
@@ -191,6 +192,7 @@ body{
 	font-size: 15px;
 	border-radius: 100%;
 	text-align: center;
+	line-height: 15px;
 }
 input[type="range"]{
 	-webkit-appearance: none !important;

@@ -28,12 +28,14 @@ function setCtrl(element){
 	})
 }
 $("#btn_back").on("click",function(e){
-	cur_path.pop();
-	updateList();
-	console.log("clk_btn_back");
-	console.log(cur_path.join(""));
-	console.log(cur_list);
-	console.log(playing_id);
+	if(!on_msg){
+		cur_path.pop();
+		updateList();
+		console.log("clk_btn_back");
+		console.log(cur_path.join(""));
+		console.log(cur_list);
+		console.log(playing_id);
+	}
 });
 function updateCurList(){
 	song_path = cur_path.join("");
