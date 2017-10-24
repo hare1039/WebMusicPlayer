@@ -43,8 +43,8 @@ body{
 }
 .file{
 	/*background-color: rgba(218, 255, 213, 0.1);*/
-	border-top: 2px solid rgb(255, 255, 255);
-	border-bottom: 2px solid rgb(255, 255, 255);
+	border-top: 2px solid rgb(133, 133, 133);
+	border-bottom: 2px solid rgb(133, 133, 133);
 }
 .file:hover{
 	background-color: rgba(218, 255, 213,0.2);
