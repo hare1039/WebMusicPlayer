@@ -5,15 +5,15 @@ html{
 	padding: 0;
 }
 body{
-	background-color: rgb(243, 243, 243);
+	background-color: rgb(30, 30, 30);
 	padding: 0;
 	height: 100%;
 }
 .item{
 	max-width: 600px;
 	width: 95%;
-	height: 80px;
-	line-height: 80px;
+	height: 50px;
+	line-height: 50px;
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -24,20 +24,23 @@ body{
 	overflow-x: auto;
 	overflow-y: hidden;
 	white-space: nowrap;
-	font-size: 1.5em;
+	font-size: 18px;
 	cursor: pointer;
+	color: rgb(255, 255, 255);
 }
 .file{
-	background-color: rgba(218, 255, 213, 0.5);
+	/*background-color: rgba(218, 255, 213, 0.1);*/
+	border-top: 2px solid rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(255, 255, 255);
 }
 .file:hover{
-	background-color: rgb(218, 255, 213);
+	background-color: rgba(218, 255, 213,0.2);
 }
 .dir{
-	background-color: rgba(244, 247, 174, 0.5);
+	background-color: rgba(244, 247, 174, 0.1);
 }
 .dir:hover{
-	background-color: rgb(244, 247, 174);
+	background-color: rgba(244, 247, 174,0.2);
 }
 .dir_back{
 	background-color: rgba(231, 231, 231, 0.5);
@@ -52,15 +55,23 @@ body{
 	background-color: rgb(255, 183, 74);
 }
 #header{
-	background-color: rgb(245, 241, 241);
+	background-color: rgb(57, 57, 57);
 	width: 100%;
 	height: 30px;
 	margin: 0 auto;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
 	text-align: center;
+	color: rgb(255, 255, 255);
+}
+.header_helper{
+	width: 100%;
+	height: 20px;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 0);
 }
 .path_ctrl{
 	height:100%;
@@ -86,6 +97,7 @@ body{
 #btn_back{
 	vertical-align: middle;
 	height: 60%;
+	filter: invert(100%);
 }
 #btn_back:hover{
 	vertical-align: middle;
@@ -99,7 +111,7 @@ body{
 	text-align: center;
 }
 #footer{
-	background-color: rgb(245, 241, 241);
+	background-color: rgb(57, 57, 57);
 	padding: 10px;
 	width: 100%;
 	margin: 0 auto;
@@ -117,6 +129,8 @@ body{
 	padding-bottom: 10px;
 	text-align: center;
 	position: relative;
+
+	filter: invert(100%);
 }
 .btn{
 	border-radius: 100%;
@@ -198,33 +212,34 @@ input[type="range"]{
 	-webkit-appearance: none !important;
 	height: 10px;
 	width: 200px;
-	background-color: #A3CD99;
-	border: 1px solid #97c68b;
+	background-color: #00ffab;
+	border: 1px solid #3cff7e;
 	border-radius: 10px;
 	margin: 0 auto;
 	margin-top: 10px;
 	transition: all 0.3s ease;
     cursor: pointer;
+
 }
 input[type="range"]:hover {
-  background-color: #b2d5aa;
+  background-color: #60ffca;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   width: 12px;
   height: 12px;
-  background-color: #579E81;
+  background-color: #d9ffef;
   border-radius: 100%;
-  box-shadow: 0px 0px 3px #3c6d59;
+  box-shadow: 0px 0px 3px #92c4b0;
   transition: all 0.5s ease;
   cursor: pointer;
 }
 input[type="range"]::-webkit-slider-thumb:hover {
-  background-color: #457d66;
+  background-color: #c3ecda;
 }
 input[type="range"]::-webkit-slider-thumb:active {
-  box-shadow: 0px 0px 1px #3c6d59;
+  box-shadow: 0px 0px 1px #d8f1e7;
   cursor: pointer;
 }
 #playing_song{
@@ -232,4 +247,11 @@ input[type="range"]::-webkit-slider-thumb:active {
 	overflow-x: auto;
 	overflow-y: hidden;
 	white-space: nowrap;
+	color: rgb(255, 255, 255);
+}
+#curtime{
+	color: rgb(255, 255, 255);
+}
+#duration{
+	color: rgb(255, 255, 255);
 }

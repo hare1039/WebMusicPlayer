@@ -7,7 +7,7 @@ let on_msg = false
 let cur_list = [];
 let playing_id = 0;
 
-$("#container").height($(window).height()-$("#footer").height()-$("#header").height()-30);
+$("#container").height($(window).height()-$("#footer").height()-$("#header").height()-20);
 function setCtrl(element){
 	element.on("click",function(e){
 		if(!on_msg){
