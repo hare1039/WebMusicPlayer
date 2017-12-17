@@ -1,4 +1,5 @@
-let socket = new WebSocket("ws://localhost:8024/ws/MusicPlayer");
+//let socket = new WebSocket("ws://localhost:8024/ws/MusicPlayer");
+let socket = new WebSocket("wss://pinkiebala.nctu.me/ws/MusicPlayer");
 socket.onmessage = onMessage;
 
 
